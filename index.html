@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
+
+
+    <script>
+        function btnClick() {
+          $.ajax({
+            url: "https://api.github.com/search/repositories",
+            type: "get",
+            data: { q: $('#string').value, 
+                   sort : "game", order:"order"},
+            dataType: "jsonp"
+          })
+          .done(function(gbdata, gbstatus) {
+              alert( 'Done: ' + JSON.stringify(gbdata) );
+          })
+          .fail(function(gbstatus) {
+              alert( 'Fail: ' + JSON.stringify(gbstatus) );
+          })
+          .always(function(gbdata, gbstatus) {
+              $('#myelement').html( JSON.stringify(gbdata) );
+              alert( 'Always: ' + JSON.stringify(gbdata) );
+          });
+        }
+
+    </script>
+  </head>
+  <body>
+  <h1>Github Search</h1>
+  <input id="string" type="text" />
+  <button id="search" onclick="btnClick()">Search</button>
+  <div id="myelement"></div>
+  </body>
+</html>
