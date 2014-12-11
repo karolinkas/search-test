@@ -5,12 +5,17 @@
 
 
     <script>
+
+    var string = $("#string")
+
+
+
         function btnClick() {
           $.ajax({
-            url: "https://api.github.com/search/repositories",
+            url: "https://api.github.com/search/repositories?q="+string+"&sort=stars&order=desc",
             type: "get",
-            data: { q: $('#string').value, 
-                   sort : "game", order:"order"},
+            // data: { q: $('#string').value, 
+            //        sort : "game", order:"order"},
             dataType: "jsonp"
           })
           .done(function(gbdata, gbstatus) {
