@@ -15,8 +15,10 @@
           .done(function(data, status) {
           		$('#results').html( JSON.stringify(data) );
           		var searchresults = JSON.stringify(data.data.total_count);
-          		console.log(searchresults);
+          		var items = JSON.stringify(data.data.items);
+          		// console.log(data.data);
           		$('#number').html( searchresults );
+          		$('#items').html( items );
           		// debugger;
               // alert( 'Done: ' + JSON.stringify(data) );
 
@@ -46,7 +48,7 @@
 			  		<div id="number"></div>
 			  	</td>
 			  	<td>
-			  		<div id="number"></div>
+			  		<div id="items"></div>
 			  	</td>
 			  </tr>
 		  <tbody>
