@@ -8,24 +8,22 @@
 
     var string = $("#string")
 
-
-
         function btnClick() {
           $.ajax({
             url: "https://api.github.com/search/repositories?q="+string+"&sort=stars&order=desc",
             type: "get",
-            // data: { q: $('#string').value, 
-            //        sort : "game", order:"order"},
             dataType: "jsonp"
           })
           .done(function(gbdata, gbstatus) {
+          		$('#results').html( JSON.stringify(gbdata) );
               alert( 'Done: ' + JSON.stringify(gbdata) );
+
           })
           .fail(function(gbstatus) {
               alert( 'Fail: ' + JSON.stringify(gbstatus) );
           })
           .always(function(gbdata, gbstatus) {
-              $('#myelement').html( JSON.stringify(gbdata) );
+              $('#results').html( JSON.stringify(gbdata) );
               alert( 'Always: ' + JSON.stringify(gbdata) );
           });
         }
@@ -36,6 +34,6 @@
   <h1>Github Search</h1>
   <input id="string" type="text" />
   <button id="search" onclick="btnClick()">Search</button>
-  <div id="myelement"></div>
+  <div id="results"></div>
   </body>
 </html>
