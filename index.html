@@ -1,10 +1,10 @@
 <html>
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-
+		<link type="text/css" rel="stylesheet" href="styles.css" />
     <script>
 
-    var string = $("#string")
+    var string = $("#string").val();
 
         function btnClick() {
           $.ajax({
@@ -15,10 +15,14 @@
           .done(function(data, status) {
           		$('#results').html( JSON.stringify(data) );
           		var searchresults = JSON.stringify(data.data.total_count);
-          		var items = JSON.stringify(data.data.items);
-          		// console.log(data.data);
+          		var items = data.data.items;
+          		console.log(items);
           		$('#number').html( searchresults );
-          		$('#items').html( items );
+          		// $('#items').html( items );
+
+          		$.each(items, function(index, value) {
+              	$("#items").append("<tr><td>"+value.name+"</td></tr>");
+            	});
           		// debugger;
               // alert( 'Done: ' + JSON.stringify(data) );
 
@@ -32,27 +36,27 @@
     </script>
   </head>
   <body>
+
 	  <h1>Github Search</h1>
 	  <input id="string" type="text" />
 	  <button id="search" onclick="btnClick()">Search</button>
+	 	<div> Total Count:
+	 		<p id="number"></p>
+	 	<div>
 	  <table>
-			<thead>
+
 				 <tr>
-					<th>Number of Results:<th>
-					<th>Other:<th>
+						<th>Repositories:<th>
+						
 				 </tr>
-			<thead>
-			<tbody>
+
 		  	<tr>
-		  		<td>
-			  		<div id="number"></div>
-			  	</td>
-			  	<td>
-			  		<div id="items"></div>
+			  	<td id="items" >
 			  	</td>
 			  </tr>
-		  <tbody>
-		 <!--  <div id="results"></div> -->
+
 		</table> 
+
   </body>
+
 </html>
