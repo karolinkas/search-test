@@ -3,7 +3,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 		<link type="text/css" rel="stylesheet" href="styles.css" />
     <script>
-        
+     
+     $("#numberbox").hide();
+
         function btnClick() {
     			var string = $("#string").val();
           $.ajax({
@@ -17,7 +19,7 @@
           		var items = data.data.items;
 
           		$('#number').html( searchresults );
-    
+    				
           		$.each(items, function(index, value) {
               	$("#items").append("<tr><td>"+value.name+"</td></tr>");
             	});
@@ -39,20 +41,21 @@
   </head>
   <body>
 
-	  <h1>Github Search</h1>
-	  <input id="string" type="text" />
-	  <button id="search" onclick="btnClick()">Search</button>
-	 	<div> Number of search results:
-	 		<p id="number"></p>
-	 	<div>
-	  <table>
+  	<div class="container">
 
-				 <tr>
-						<th>Repositories:<th>
-						<th>Date of Creation:<th>
-						
-				 </tr>
+		  <h1>Github Search</h1>
+		  <input id="string" type="text" />
+		  <button id="search" onclick="btnClick()">Search</button>
+		 	
+		 	<div id="numberbox"> Number of search results:
+		 		<p id="number"></p>
+		 	</div>
 
+				 
+		  <table>
+				
+		
+					
 		  	<tr>
 			  	<td id="items" >
 			  	</td>
@@ -60,7 +63,9 @@
 			  	</td>
 			  </tr>
 
-		</table> 
+			</table> 
+
+		</div>
 
   </body>
 
