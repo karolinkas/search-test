@@ -2,8 +2,6 @@
   <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 
-
-
     <script>
 
     var string = $("#string")
@@ -14,18 +12,19 @@
             type: "get",
             dataType: "jsonp"
           })
-          .done(function(gbdata, gbstatus) {
-          		$('#results').html( JSON.stringify(gbdata) );
-              alert( 'Done: ' + JSON.stringify(gbdata) );
+          .done(function(data, status) {
+          		$('#results').html( JSON.stringify(data) );
+          		$('#number').html( searchresults );
+          		var searchresults = data.data.total_count;
+          		// console.log(data.data);
+          		// debugger;
+              alert( 'Done: ' + JSON.stringify(data) );
 
           })
           .fail(function(gbstatus) {
-              alert( 'Fail: ' + JSON.stringify(gbstatus) );
-          })
-          .always(function(gbdata, gbstatus) {
-              $('#results').html( JSON.stringify(gbdata) );
-              alert( 'Always: ' + JSON.stringify(gbdata) );
+              alert( 'Fail: ' + JSON.stringify(status) );
           });
+          
         }
 
     </script>
@@ -35,5 +34,6 @@
   <input id="string" type="text" />
   <button id="search" onclick="btnClick()">Search</button>
   <div id="results"></div>
+  <div id="number">Number:</div>
   </body>
 </html>
