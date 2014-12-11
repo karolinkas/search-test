@@ -14,11 +14,11 @@
           })
           .done(function(data, status) {
           		$('#results').html( JSON.stringify(data) );
+          		var searchresults = JSON.stringify(data.data.total_count);
+          		console.log(searchresults);
           		$('#number').html( searchresults );
-          		var searchresults = data.data.total_count;
-          		// console.log(data.data);
           		// debugger;
-              alert( 'Done: ' + JSON.stringify(data) );
+              // alert( 'Done: ' + JSON.stringify(data) );
 
           })
           .fail(function(gbstatus) {
@@ -30,10 +30,27 @@
     </script>
   </head>
   <body>
-  <h1>Github Search</h1>
-  <input id="string" type="text" />
-  <button id="search" onclick="btnClick()">Search</button>
-  <div id="results"></div>
-  <div id="number">Number:</div>
+	  <h1>Github Search</h1>
+	  <input id="string" type="text" />
+	  <button id="search" onclick="btnClick()">Search</button>
+	  <table>
+			<thead>
+				 <tr>
+					<th>Number of Results:<th>
+					<th>Other:<th>
+				 </tr>
+			<thead>
+			<tbody>
+		  	<tr>
+		  		<td>
+			  		<div id="number"></div>
+			  	</td>
+			  	<td>
+			  		<div id="number"></div>
+			  	</td>
+			  </tr>
+		  <tbody>
+		 <!--  <div id="results"></div> -->
+		</table> 
   </body>
 </html>
