@@ -3,10 +3,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 		<link type="text/css" rel="stylesheet" href="styles.css" />
     <script>
-
-    var string = $("#string").val();
-
+        
         function btnClick() {
+    			var string = $("#string").val();
           $.ajax({
             url: "https://api.github.com/search/repositories?q="+string+"&sort=stars&order=desc",
             type: "get",
@@ -19,20 +18,17 @@
           		console.log(items);
           		$('#number').html( searchresults );
           		// $('#items').html( items );
-
           		$.each(items, function(index, value) {
               	$("#items").append("<tr><td>"+value.name+"</td></tr>");
             	});
           		// debugger;
               // alert( 'Done: ' + JSON.stringify(data) );
-
           })
           .fail(function(gbstatus) {
               alert( 'Fail: ' + JSON.stringify(status) );
           });
           
         }
-
     </script>
   </head>
   <body>
