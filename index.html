@@ -13,16 +13,22 @@
           })
           .done(function(data, status) {
           		$('#results').html( JSON.stringify(data) );
-          		var searchresults = JSON.stringify(data.data.total_count);
+          		var searchresults = JSON.stringify(data.data.items.length);
           		var items = data.data.items;
-          		console.log(items);
+
           		$('#number').html( searchresults );
-          		// $('#items').html( items );
+    
           		$.each(items, function(index, value) {
               	$("#items").append("<tr><td>"+value.name+"</td></tr>");
             	});
-          		// debugger;
-              // alert( 'Done: ' + JSON.stringify(data) );
+
+            	$.each(items, function(index, value) {
+
+            		var date = value.created_at.substring(0,10);;
+              	$("#details").append("<tr><td>"+date+"</td></tr>");
+            	});
+
+     
           })
           .fail(function(gbstatus) {
               alert( 'Fail: ' + JSON.stringify(status) );
@@ -36,18 +42,21 @@
 	  <h1>Github Search</h1>
 	  <input id="string" type="text" />
 	  <button id="search" onclick="btnClick()">Search</button>
-	 	<div> Total Count:
+	 	<div> Number of search results:
 	 		<p id="number"></p>
 	 	<div>
 	  <table>
 
 				 <tr>
 						<th>Repositories:<th>
+						<th>Date of Creation:<th>
 						
 				 </tr>
 
 		  	<tr>
 			  	<td id="items" >
+			  	</td>
+			  	<td id="details" >
 			  	</td>
 			  </tr>
 
