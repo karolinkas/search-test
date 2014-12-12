@@ -7,6 +7,9 @@
     $(function () {
     	var minlength = 3;
 
+    	$("#tabletitle").hide();
+    	$("#numberbox").hide();
+
 	    $("#string").keyup(function() {
 	        var that = this,
 	            string = $(this).val();
@@ -20,9 +23,13 @@
 		            	if (string==$(that).val()) {
 		                var searchresults = JSON.stringify(data.data.items.length);
 		                var items = data.data.items;
+		                
+		                $("#tabletitle").show();
+		                $("#numberbox").show();
 		                $('.results').remove();
 		                $('#results').html(JSON.stringify(data));
 		                $('#number').html(searchresults);
+
 		                $.each(items, function(index, value) {
 		                    $("#items").append('<tr class="results">'
 		                    										+'<td>' + value.name + '</td>'
@@ -60,8 +67,13 @@
             <p id="number"></p>
         </div>
 
-
         <table>
+					<thead id="tabletitle">
+						<th id="repo"> Repositories:
+		        </th>
+		        <th id="creation"> Date of creation:
+		        </th>
+					</thead>
 
             <tr>
                 <td id="items">
